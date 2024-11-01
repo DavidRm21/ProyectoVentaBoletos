@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalM.Views.LoginPage"
+             >
+
+    <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,*"
+              RowSpacing="20"
+              Padding="20">
+
+                <!-- Carrusel de Películas -->
+                <Frame Grid.Row="1"
+                   BackgroundColor="#262626"
+                   CornerRadius="10"
+                   Padding="15"
+                   BorderColor="#404040">
+                    <CarouselView HeightRequest="200"
+                             Loop="True"
+                             PeekAreaInsets="50">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                         ItemSpacing="10"/>
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="8"
+                                   HasShadow="True"
+                                   Padding="0">
+                                    <Image Aspect="AspectFill"
+                                       Source="{Binding ImageUrl}"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </Frame>
+
+                <!-- Sección Principal -->
+                <VerticalStackLayout Grid.Row="2" 
+                                Spacing="20">
+
+                    <!-- Botón de Compra Rápida -->
+                    <Button Text="Comprar Boletos"
+                        BackgroundColor="#E50914"
+                        TextColor="White"
+                        FontSize="18"
+                        HeightRequest="50"
+                        CornerRadius="25"
+                        Clicked="OnComprar"/>
+
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
+
+    </ContentPage>

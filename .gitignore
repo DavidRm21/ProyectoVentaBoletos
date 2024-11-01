@@ -1,0 +1,108 @@
+# Visual Studio specific files
+.vs/
+.vscode/
+.vscode/*
+.vscode/**/*.*
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/*.log
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+*.ncb
+*.aps
+*.pch
+*.opensdf
+*.sdf
+*.cachefile
+*.ilk
+*.ipch
+*.obj
+*.pgc
+*.pgd
+
+# Build folders
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# NuGet packages
+*.nupkg
+**/packages/*
+!**/packages/build/
+*.snupkg
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio Code Coverage
+*.coverage
+*.coveragexml
+*.coveragejson
+
+# NDepend
+.ndepend
+
+# Azure
+*.azure
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+$RECYCLE.BIN/
+
+# Recycle Bin used on file shares
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Rider IDE files
+.idea/
+*.sln.iml
+
+# JetBrains Rider files
+.idea/
+.idea/*
+.idea/**/*
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/*
+.idea/compiler.xml
+.idea/artifacts
+.idea/scopes
+.idea/shelf
+.idea/workspace.xml
+
+# JetBrains Rider logs
+**/idea.log
+
+# Additional Files
+*.ipynb
+*.csv
+*.xls
