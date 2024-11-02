@@ -12,31 +12,19 @@
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage" />
 
-    
+    <ShellContent
+        Title="Cartelera"
+        ContentTemplate="{DataTemplate views:MoviesPage}"
+        Route="MoviesPage" />
 
-    <FlyoutItem Title="Cinema">
+    <ShellContent
+        Title="Asiento"
+        ContentTemplate="{DataTemplate views:SalaPage}"
+        Route="SalaPage" />
 
-        <Tab Title="Peliculas">
-            <ShellContent
-                Title="Cartelera"
-                ContentTemplate="{DataTemplate views:MoviesPage}"
-                Route="MoviesPage" />
-        </Tab>
-
-        <Tab Title="Asientos">
-            <ShellContent
-                Title="Asiento"
-                ContentTemplate="{DataTemplate views:SalaPage}"
-                Route="SalaPage" />
-        </Tab>
-
-        <Tab Title="Resumen">
-            <ShellContent
-                Title="Pago"
-                ContentTemplate="{DataTemplate views:PaymentPage}"
-                Route="PaymentPage" />
-        </Tab>
-
-    </FlyoutItem>
+    <ShellContent
+        Title="Pago"
+        ContentTemplate="{DataTemplate views:PaymentPage}"
+        Route="PaymentPage" />
 
 </Shell>

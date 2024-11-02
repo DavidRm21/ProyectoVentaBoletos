@@ -24,6 +24,7 @@ namespace ProyectoFinalM
             Routing.RegisterRoute(nameof(MovieDetailPage), typeof(MovieDetailPage));
             Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
             Routing.RegisterRoute(nameof(SalaPage), typeof(SalaPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 
 #if DEBUG
             builder.Logging.AddDebug();
