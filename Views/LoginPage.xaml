@@ -9,33 +9,15 @@
               RowSpacing="20"
               Padding="20">
 
-                <!-- Carrusel de Películas -->
-                <Frame Grid.Row="1"
-                   BackgroundColor="#262626"
-                   CornerRadius="10"
-                   Padding="15"
-                   BorderColor="#404040">
-                    <CarouselView HeightRequest="200"
-                             Loop="True"
-                             PeekAreaInsets="50">
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal"
-                                         ItemSpacing="10"/>
-                        </CarouselView.ItemsLayout>
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame CornerRadius="8"
-                                   HasShadow="True"
-                                   Padding="0">
-                                    <Image Aspect="AspectFill"
-                                       Source="{Binding ImageUrl}"/>
-                                </Frame>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
-                </Frame>
+            <Frame CornerRadius="8"
+                HasShadow="True"
+                Padding="0">
+                <Image MaximumWidthRequest="500"
+                    Aspect="AspectFill"
+                       Source="C:\Users\Cristian\source\repos\ProyectoFinalM\Resources\Images\cinema.jpg"/>
+            </Frame>
 
-                <!-- Sección Principal -->
+            <!-- Sección Principal -->
                 <VerticalStackLayout Grid.Row="2" 
                                 Spacing="20">
 

@@ -2,10 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalM.Views.MoviesPage"
-             Title="MoviesPage">
-    <!--<VerticalStackLayout x:Name="container">
-
-    </VerticalStackLayout> -->
+             Title="Funciones">
 
     <Grid RowDefinitions="Auto,*">
         <!-- Barra de búsqueda -->
@@ -38,8 +35,9 @@
                             <!-- Imagen de la película -->
                             <Image Grid.Row="0"
                                    Source="{Binding ImageUrl}"
-                                   HeightRequest="200"
-                                   Aspect="AspectFill"/>
+                                   Aspect="AspectFill"
+                                   MinimumHeightRequest="20"
+                                   MaximumWidthRequest="120"/>
 
                             <!-- Título de la película -->
                             <Label Grid.Row="1"
