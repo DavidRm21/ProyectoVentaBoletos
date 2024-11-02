@@ -49,6 +49,7 @@ public record User (int Id, string Username, string Password);
 public record Sale (int Id, string Name, double Price);
 public record Movie(int Id, string Titulo, string Genero, int Duracion, string Clasificacion, string ImageUrl);
 
+
 public record Ticket
 {
     public int Id { get; set; }  // Cambiado a propiedades para permitir que EF Core maneje el ID
