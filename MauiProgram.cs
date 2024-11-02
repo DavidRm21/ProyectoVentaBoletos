@@ -22,9 +22,11 @@ namespace ProyectoFinalM
             dbContext.Dispose();
 
             Routing.RegisterRoute(nameof(MovieDetailPage), typeof(MovieDetailPage));
+            Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
+            Routing.RegisterRoute(nameof(SalaPage), typeof(SalaPage));
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

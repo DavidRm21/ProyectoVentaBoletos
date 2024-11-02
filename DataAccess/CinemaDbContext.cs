@@ -8,6 +8,7 @@ public class CinemaDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Sale> Sales{ get; set; }
     public DbSet<Movie> Movies{ get; set; }
+    public DbSet<Ticket> Tickets{ get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -17,6 +18,13 @@ public class CinemaDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Ticket>()
+            .HasKey(t => t.Id);
+
+        modelBuilder.Entity<Ticket>()
+            .Property(t => t.Id)
+            .ValueGeneratedOnAdd();
+
         modelBuilder.Entity<User>().HasData(
             new User (1, "admin", "password"),
             new User (2, "luis", "a2dt"),
@@ -30,13 +38,30 @@ public class CinemaDbContext : DbContext
             new Movie(4, "Toy Story", "Animación", 81, "G")
             );
 
-    }
+        modelBuilder.Entity<Ticket>().HasData(
+            );
 
+    }
 
 }
 
 public record User (int Id, string Username, string Password);
 public record Sale (int Id, string Name, double Price);
 public record Movie(int Id, string Titulo, string Genero, int Duracion, string Clasificacion);
+
+public record Ticket
+{
+    public int Id { get; set; }  // Cambiado a propiedades para permitir que EF Core maneje el ID
+    public int MovieId { get; set; }
+    public string SeatNumber { get; set; }
+    public DateTime PurchaseDate { get; set; }
+
+    public Ticket(int movieId, string seatNumber, DateTime purchaseDate)
+    {
+        MovieId = movieId;
+        SeatNumber = seatNumber;
+        PurchaseDate = purchaseDate;
+    }
+}
 
 

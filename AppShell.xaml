@@ -26,15 +26,15 @@
         <Tab Title="Asientos">
             <ShellContent
                 Title="Asiento"
-                ContentTemplate="{DataTemplate views:MainPage}"
-                Route="MainPage" />
+                ContentTemplate="{DataTemplate views:SalaPage}"
+                Route="SalaPage" />
         </Tab>
 
         <Tab Title="Resumen">
             <ShellContent
                 Title="Pago"
-                ContentTemplate="{DataTemplate views:LoginPage}"
-                Route="MoviesPage" />
+                ContentTemplate="{DataTemplate views:PaymentPage}"
+                Route="PaymentPage" />
         </Tab>
 
     </FlyoutItem>

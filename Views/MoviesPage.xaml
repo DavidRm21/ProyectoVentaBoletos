@@ -3,7 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalM.Views.MoviesPage"
              Title="MoviesPage">
-    <VerticalStackLayout x:Name="container">
-        
-    </VerticalStackLayout>
+    <!--<VerticalStackLayout x:Name="container">
+
+    </VerticalStackLayout> -->
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Barra de búsqueda -->
+        <SearchBar Grid.Row="0" 
+                   x:Name="searchBar"
+                   Placeholder="Buscar películas..."
+                   SearchButtonPressed="OnSearchButtonPressed"
+                   TextChanged="OnSearchTextChanged"
+                   Margin="10"/>
+
+        <!-- Lista de películas -->
+        <CollectionView Grid.Row="1" 
+                       x:Name="moviesCollection"
+                       SelectionMode="Single"
+                       SelectionChanged="OnMovieSelected">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                Span="2"
+                                HorizontalItemSpacing="10"
+                                VerticalItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray"
+                           CornerRadius="10"
+                           Padding="10"
+                           Margin="5">
+                        <Grid RowDefinitions="Auto,Auto,Auto">
+                            <!-- Imagen de la película -->
+                            <Image Grid.Row="0"
+                                   Source="{Binding ImageUrl}"
+                                   HeightRequest="200"
+                                   Aspect="AspectFill"/>
+
+                            <!-- Título de la película -->
+                            <Label Grid.Row="1"
+                                   Text="{Binding Titulo}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"/>
+
+                            <!-- Duración/Rating -->
+                            <HorizontalStackLayout Grid.Row="2" 
+                                                 HorizontalOptions="Center"
+                                                 Spacing="10">
+                                <Label Text="{Binding Duracion, StringFormat='{0} min'}"/>
+                                <Label Text="|"/>
+                                <Label Text="{Binding Rating}"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
