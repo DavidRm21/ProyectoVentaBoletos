@@ -10,7 +10,7 @@ public partial class SalaPage : ContentPage ,IQueryAttributable
 {
     private const int ROWS = 5;
     private const int COLS = 6;
-    private const decimal TICKET_PRICE = 5500.00M;
+    private const decimal TICKET_PRICE = 4000.00M;
     private readonly List<string> selectedSeats = new();
     private int movieId;
 public SalaPage()
@@ -104,7 +104,7 @@ public SalaPage()
         if((occupiedSeats.Count / 2) >= ROWS * COLS)
         {
             await DisplayAlert("Sala llena", "La sala de cine ha alcanzado su capacidad máxima y no se pueden reservar más asientos. Por favor, selecciona otra función.", "OK");
-            await Shell.Current.GoToAsync("//MoviesPage");
+            await Shell.Current.GoToAsync("//main/MoviesPage");
         }
     }
 
@@ -174,7 +174,7 @@ public SalaPage()
                 var paymentDetailsJson = JsonSerializer.Serialize(payment);
                 var encodedDetails = HttpUtility.UrlEncode(paymentDetailsJson);
 
-                var uri = $"{nameof(PaymentPage)}?paymentDetails={encodedDetails}";
+                var uri = $"//main/{nameof(PaymentPage)}?paymentDetails={encodedDetails}";
                 await Shell.Current.GoToAsync(uri);
             }
             catch (Exception ex)

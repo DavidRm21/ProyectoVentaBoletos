@@ -25,6 +25,17 @@ public class CinemaDbContext : DbContext
             .Property(t => t.Id)
             .ValueGeneratedOnAdd();
 
+        modelBuilder.Entity<Sale>()
+        .HasKey(s => s.Id);
+        modelBuilder.Entity<Sale>()
+            .Property(s => s.Id)
+            .ValueGeneratedOnAdd();
+
+        modelBuilder.Entity<Sale>()
+            .HasMany(s => s.Tickets)
+            .WithOne(t => t.Sale)
+            .HasForeignKey(t => t.SaleId);
+
         modelBuilder.Entity<User>().HasData(
             new User (1, "admin", "password"),
             new User (2, "luis", "a2dt"),
@@ -46,16 +57,17 @@ public class CinemaDbContext : DbContext
 }
 
 public record User (int Id, string Username, string Password);
-public record Sale (int Id, string Name, double Price);
 public record Movie(int Id, string Titulo, string Genero, int Duracion, string Clasificacion, string ImageUrl);
 
 
 public record Ticket
 {
-    public int Id { get; set; }  // Cambiado a propiedades para permitir que EF Core maneje el ID
+    public int Id { get; set; }
     public int MovieId { get; set; }
+    public int SaleId { get; set; }
     public string SeatNumber { get; set; }
     public DateTime PurchaseDate { get; set; }
+    public Sale Sale { get; set; }
 
     public Ticket(int movieId, string seatNumber, DateTime purchaseDate)
     {
@@ -63,6 +75,27 @@ public record Ticket
         SeatNumber = seatNumber;
         PurchaseDate = purchaseDate;
     }
+}
+
+public record Sale
+{
+    public int Id { get; set; }
+    public int MovieId { get; set; }
+    public decimal Subtotal { get; set; }
+    public decimal Tax { get; set; }
+    public decimal Total { get; set; }
+    public DateTime PurchaseDate { get; set; }
+    public List<Ticket> Tickets { get; set; } = new();
+
+    public Sale(int movieId, decimal subtotal, decimal tax, decimal total, DateTime purchaseDate)
+    {
+        MovieId = movieId;
+        Subtotal = subtotal;
+        Tax = tax;
+        Total = total;
+        PurchaseDate = purchaseDate;
+    }
+    
 }
 
 

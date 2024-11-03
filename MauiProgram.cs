@@ -21,17 +21,13 @@ namespace ProyectoFinalM
             dbContext.Database.EnsureCreated();
             dbContext.Dispose();
 
-            Routing.RegisterRoute(nameof(MovieDetailPage), typeof(MovieDetailPage));
-            Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
-            Routing.RegisterRoute(nameof(SalaPage), typeof(SalaPage));
-            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-            Routing.RegisterRoute(nameof(MoviesPage), typeof(MoviesPage));
-
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
         }
+
+
     }
 }

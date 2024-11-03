@@ -44,7 +44,7 @@ public partial class MovieDetailPage : ContentPage, IQueryAttributable
     private async void OnComprarClicked(object sender, EventArgs e)
     {
 
-        var uri = $"{nameof(SalaPage)}?id={movieId}";
+        var uri = $"//main/{nameof(SalaPage)}?id={movieId}";
         await Shell.Current.GoToAsync(uri);
     }
 

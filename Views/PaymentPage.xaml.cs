@@ -1,6 +1,9 @@
 
+using Microsoft.Maui;
 using ProyectoFinalM.DataAccess;
 using ProyectoFinalM.Models;
+using System.Diagnostics;
+using System.Globalization;
 using System.Text.Json;
 using System.Web;
 
@@ -10,7 +13,7 @@ namespace ProyectoFinalM.Views;
 public partial class PaymentPage : ContentPage, IQueryAttributable
 {
     private PaymentDetails paymentDetails;
-    private const decimal TAX_RATE = 0.16M;
+    private const decimal TAX_RATE = 0.19M;
 
     public PaymentPage()
 	{
@@ -56,7 +59,11 @@ public partial class PaymentPage : ContentPage, IQueryAttributable
         var tax = subtotal * TAX_RATE;
         var total = subtotal + tax;
 
-        SubtotalLabel.Text = $"${subtotal:F2}";
+        var culture = new CultureInfo("es-CO");
+
+        SubtotalLabel.Text = $"{subtotal.ToString("C", culture):F2}";
+        totalLabel.Text = $"{total.ToString("C", culture):F2}";
+        IvaLabel.Text = $"{tax.ToString("C", culture):F2}";
     }
 
 
@@ -73,24 +80,43 @@ public partial class PaymentPage : ContentPage, IQueryAttributable
             {
                 var dbContext = new CinemaDbContext();
 
-                // Crear tickets
+                var subtotal = paymentDetails.TotalAmount;
+                var tax = subtotal * TAX_RATE;
+                var total = subtotal + tax;
+
+                var sale = new Sale(
+                paymentDetails.MovieId,
+                subtotal,
+                tax,
+                total,
+                DateTime.Now
+            );
+
+                dbContext.Sales.Add(sale);
+                await dbContext.SaveChangesAsync();
+
+                // Crear tickets asociados a la venta
                 foreach (var seat in paymentDetails.SelectedSeats)
                 {
-                    var ticket = new Ticket
-                    (
+                    var ticket = new Ticket(
                         paymentDetails.MovieId,
                         seat,
                         DateTime.Now
-                    );
+                    )
+                    {
+                        SaleId = sale.Id // Asociamos el ticket con la venta
+                    };
                     dbContext.Tickets.Add(ticket);
                 }
 
                 await dbContext.SaveChangesAsync();
-
                 await DisplayAlert("Éxito", "¡Pago realizado con éxito!", "OK");
-
-                var uri = $"{nameof(LoginPage)}";
-                await Shell.Current.GoToAsync(uri);
+                foreach (var sal in dbContext.Sales)
+                {
+                    Debug.WriteLine($"Venta ID: {sal.Id}, Película: {sal.MovieId}, Total: {sal.Total}");
+                    Debug.WriteLine($"Tickets asociados: {sal.Tickets.Count}");
+                }
+                await Shell.Current.GoToAsync("//main/"+nameof(LoginPage));
             }
             catch (Exception ex)
             {
@@ -107,7 +133,7 @@ public partial class PaymentPage : ContentPage, IQueryAttributable
 
         if (cancel)
         {
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            await Shell.Current.GoToAsync("//main/"+nameof(LoginPage));
         }
     }
 }

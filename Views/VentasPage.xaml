@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalM.Views.VentasPage"
+             Title="Reporte de ventas">
+    
+    <Grid RowDefinitions="Auto,*,Auto" 
+          Padding="20"
+          RowSpacing="20">
+
+        <!-- Encabezado con fecha y totales -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="{Binding CurrentDate}" 
+                   FontSize="20" 
+                   HorizontalOptions="Center"/>
+            <Label Text="{Binding TotalSalesInfo}" 
+                   FontSize="18" 
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- Lista de ventas -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding DailySales}"
+                        EmptyView="No hay ventas registradas para el día de hoy.">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" Padding="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="{Binding Movie.Titulo}" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding PurchaseTime, StringFormat='Hora: {0:HH:mm}'}" 
+                                       FontSize="14"/>
+                                <Label Text="{Binding TicketsInfo}" 
+                                       FontSize="14"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" 
+                                               HorizontalOptions="End">
+                                <Label Text="{Binding Total, StringFormat='Total: ${0:N2}'}" 
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Subtotal, StringFormat='Subtotal: ${0:N2}'}"/>
+                                <Label Text="{Binding Tax, StringFormat='IVA: ${0:N2}'}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Boton -->
+        <HorizontalStackLayout Grid.Row="2" 
+                              Spacing="10" 
+                              HorizontalOptions="Center">
+            <Button Text="Reiniciar Base de Datos" 
+                    Command="{Binding ResetDatabaseCommand}"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+            
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

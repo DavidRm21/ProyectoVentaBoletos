@@ -31,7 +31,7 @@ public partial class MoviesPage : ContentPage
             ((CollectionView)sender).SelectedItem = null;
 
             // Navegar al detalle
-            var uri = $"{nameof(MovieDetailPage)}?id={selectedMovie.Id}";
+            var uri = $"//main/{nameof(MovieDetailPage)}?id={selectedMovie.Id}";
             await Shell.Current.GoToAsync(uri);
         }
     }

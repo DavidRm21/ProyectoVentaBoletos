@@ -9,7 +9,7 @@ public partial class LoginPage : ContentPage
 
     public async void OnComprar(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MoviesPage");
+        await Shell.Current.GoToAsync("//main/MoviesPage");
     }
 
 
